@@ -167,3 +167,15 @@ Pull requests welcome, and maybe [we have a job for you](http://jobs.comeon.com/
 ## How to Submit the Home Assignment
 
 We would prefer that you push the code to a git repo and send us the link, but you could also send us your code in a compressed file in an email.
+
+# Notes For Play Game Button!
+
+# console errors!
+
+```
+GET https://comeon-game-test.casinomodule.com/mobile-game-launcher/version net::ERR_CONNECTION_RESET
+
+GET https://comeon-game-test.casinomodule.com/servlet/CasinoGameServlet;jsession=DEMO-41e133d5237c402-EUR?action=init&sessid=DEMO-41e133d5237c402-EUR&gameId=starburst_not_mobile_sw&wantsfreerounds=true&freeroundmode=false&wantsreels=true&no-cache=1680016697114 net::ERR_CONNECTION_RESET
+```
+
+- It appears that the URLs for the games might be outdated or the server is down, leading to a net::ERR_CONNECTION_RESET error. The same goes for the Not Found error message; it seems that the requested URL does not exist on the server.
