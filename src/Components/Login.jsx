@@ -1,42 +1,24 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Logo from "../Assets/images/logo.svg";
+import React, { useState, useContext } from "react";
+
+import { SessionContext } from "../Hooks/SessionProvider";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+
+  const { handleLogin, errorMessage } = useContext(SessionContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("http://localhost:3001/login", {
-        username,
-        password,
-      });
-
-      if (response.data.status === "success") {
-        navigate("/casino");
-      } else {
-        setErrorMessage(response.data.error);
-      }
+      await handleLogin(username, password);
     } catch (error) {
       console.error(error);
-      setErrorMessage("Login failed");
     }
   };
 
   return (
     <>
-      <div class="ui one column center aligned page grid">
-        <div class="column twelve wide">
-          <img src={Logo} alt="logo" />
-        </div>
-      </div>
-
       <div className="main container">
         <div className="login">
           <div className="ui grid centered">
@@ -69,9 +51,7 @@ function Login() {
                 </div>
                 <div>
                   {errorMessage && (
-                    <span className="ui red message">
-                      Player does not exist or wrong password
-                    </span>
+                    <span className="ui red message">{errorMessage}</span>
                   )}
                 </div>
                 <div className="field">

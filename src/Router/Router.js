@@ -2,23 +2,25 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Login from "../Components/Login";
-import Logout from "../Components/Logout";
-import Casino from "../Components/Casino";
+import GamesList from "../Components/Games-list";
 
+import { SessionProvider } from "../Hooks/SessionProvider";
+
+// setting up the path
 export const routes = {
-  HOME: "/",
-  LOGOUT: "/logout",
-  CASINO: "/casino/",
+  LOGIN: "/",
+  GAMELIST: "/games-list/",
 };
 
 function BaseRoutes() {
   return (
     <>
-      <Routes>
-        <Route path={routes.HOME} element={<Login />} />
-        <Route path={routes.LOGOUT} element={<Logout />} />
-        <Route path={routes.CASINO} element={<Casino />} />
-      </Routes>
+      <SessionProvider>
+        <Routes>
+          <Route path={routes.LOGIN} element={<Login />} />
+          <Route path={routes.GAMELIST} element={<GamesList />} />
+        </Routes>
+      </SessionProvider>
     </>
   );
 }
