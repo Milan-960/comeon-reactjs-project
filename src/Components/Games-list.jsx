@@ -1,17 +1,34 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import { SessionContext } from "../Hooks/SessionProvider";
+import CategoryFilter from "./CategoryFilter";
 
 function GameLists() {
   const { userSession, handleLogout, checkAuth } = useContext(SessionContext);
+
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   console.log("games", games);
 
-  const [searchTerm, setSearchTerm] = useState("");
-
+  // Search for games
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
+  };
+
+  // Filter for category
+  const filteredGames = games.filter((game) => {
+    if (selectedCategory === 0) {
+      return true;
+    }
+    return game.categoryIds.includes(selectedCategory);
+  });
+
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId);
   };
 
   useEffect(() => {
@@ -22,6 +39,13 @@ function GameLists() {
       .then((response) => response.json())
       .then((resp) => {
         setGames(resp);
+      });
+
+    // For categories
+    fetch("http://localhost:3001/categories", { method: "get" })
+      .then((response) => response.json())
+      .then((resp) => {
+        setCategories(resp);
       });
   }, [checkAuth]);
 
@@ -75,7 +99,7 @@ function GameLists() {
               <h3 className="ui dividing header">Games</h3>
 
               <div className="ui relaxed divided game items links">
-                {games
+                {filteredGames
                   .filter((game) =>
                     game.name.toLowerCase().includes(searchTerm.toLowerCase())
                   )
@@ -105,7 +129,11 @@ function GameLists() {
             <div className="four wide column">
               <h3 className="ui dividing header">Categories</h3>
               <div className="ui selection animated list category items header">
-                CategoryFilter
+                <CategoryFilter
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategorySelect={handleCategorySelect}
+                />
               </div>
             </div>
           </div>
