@@ -1,10 +1,11 @@
 import React from "react";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Login from "../Components/Login";
-
 import { SessionProvider } from "../Hooks/SessionProvider";
 import GamesList from "../Pages/Games-list";
+import NotFound from "../Pages/404";
+
 import PrivateRoute from "../Router/PrivateRoute";
 
 // setting up the path
@@ -22,6 +23,7 @@ function BaseRoutes() {
           <Route path={routes.LOGIN} element={<Login />} />
           <Route path={routes.GAMELIST} element={<GamesList />} />
           <Route path={routes.GAME} element={<PrivateRoute />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </SessionProvider>
     </>
