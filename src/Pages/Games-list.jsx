@@ -1,13 +1,36 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+
 import { SessionContext } from "../Hooks/SessionProvider";
+import CategoryFilter from "../Components/CategoryFilter";
 
 function GameLists() {
   const { userSession, handleLogout, checkAuth } = useContext(SessionContext);
+
   const [games, setGames] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   console.log("games", games);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // Search for games
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+  };
+
+  // Filter for category
+  const filteredGames = games.filter((game) => {
+    if (selectedCategory === 0) {
+      return true;
+    }
+    return game.categoryIds.includes(selectedCategory);
+  });
+
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId);
+  };
 
   useEffect(() => {
     // added this line to check if the user is authenticated
@@ -17,6 +40,13 @@ function GameLists() {
       .then((response) => response.json())
       .then((resp) => {
         setGames(resp);
+      });
+
+    // For categories
+    fetch("http://localhost:3001/categories", { method: "get" })
+      .then((response) => response.json())
+      .then((resp) => {
+        setCategories(resp);
       });
   }, [checkAuth]);
 
@@ -59,7 +89,7 @@ function GameLists() {
                   type="text"
                   placeholder="Search Game"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={handleSearch}
                 />
                 <i className="search icon"></i>
               </div>
@@ -70,12 +100,12 @@ function GameLists() {
               <h3 className="ui dividing header">Games</h3>
 
               <div className="ui relaxed divided game items links">
-                {games
+                {filteredGames
                   .filter((game) =>
                     game.name.toLowerCase().includes(searchTerm.toLowerCase())
                   )
                   .map((game) => (
-                    <div className="item" key={game.id}>
+                    <div key={game.id} className="game item">
                       <div className="image game-image">
                         <img
                           src={game.icon}
@@ -86,6 +116,14 @@ function GameLists() {
                       <div className="content">
                         <div className="header">{game.name}</div>
                         <div className="description">{game.description}</div>
+                        <Link
+                          to={`/games-list/game/${game.code}`}
+                          className="ui icon right floated button"
+                        >
+                          <div className="play-button-container">
+                            Play <i className="right play icon"></i>
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   ))}
@@ -95,7 +133,11 @@ function GameLists() {
             <div className="four wide column">
               <h3 className="ui dividing header">Categories</h3>
               <div className="ui selection animated list category items header">
-                CategoryFilter
+                <CategoryFilter
+                  categories={categories}
+                  selectedCategory={selectedCategory}
+                  onCategorySelect={handleCategorySelect}
+                />
               </div>
             </div>
           </div>

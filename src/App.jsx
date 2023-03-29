@@ -6,6 +6,7 @@ import BaseRoutes from "./Router/Router";
 
 import "./stylesheets/semantic.css";
 import "./stylesheets/styles.css";
+import "./stylesheets/Game.css";
 
 const App = () => {
   return (
