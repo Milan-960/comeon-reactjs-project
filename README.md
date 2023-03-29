@@ -1,5 +1,27 @@
 ![comeon-javascript-test-site](http://b5fa2dae67bf7ee0b0e5-e0d56d540e31d5f2f9430984d20d712d.r41.cf3.rackcdn.com/comeon-javascript-test_3.png)
 
+## How to run a ptoject!
+
+# Note This project was created using node version **v16.18.1**
+
+## clone the branch
+
+```
+git clone https://github.com/Milan-960/comeon-reactjs-project.git
+```
+
+## Install dependecies
+
+```
+npm install
+```
+
+## run on the localhost
+
+```
+npm start
+```
+
 # comeon-javascript-test
 
 Applicant's test for Javascript coders.
@@ -170,7 +192,7 @@ We would prefer that you push the code to a git repo and send us the link, but y
 
 # Notes For Play Game Button!
 
-# console errors!
+## console errors!
 
 ```
 GET https://comeon-game-test.casinomodule.com/mobile-game-launcher/version net::ERR_CONNECTION_RESET

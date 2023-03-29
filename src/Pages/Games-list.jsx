@@ -12,8 +12,6 @@ function GameLists() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
 
-  console.log("games", games);
-
   // Search for games
   const handleSearch = (e) => {
     e.preventDefault();

@@ -21,7 +21,6 @@ const SessionProvider = ({ children }) => {
         username,
         password,
       });
-      console.log("response", response);
       if (response.data.status === "success") {
         setUserSession(response.data.player);
         setIsAuthenticated(true);
@@ -34,7 +33,6 @@ const SessionProvider = ({ children }) => {
         setErrorMessage(response.data.error);
       }
     } catch (error) {
-      console.log("error", error);
       if (error.response) {
         setErrorMessage(error.response.data.error);
       } else {
