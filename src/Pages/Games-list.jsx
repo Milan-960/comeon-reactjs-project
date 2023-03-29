@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { SessionContext } from "../Hooks/SessionProvider";
-import CategoryFilter from "./CategoryFilter";
+import CategoryFilter from "../Components/CategoryFilter";
 
 function GameLists() {
   const { userSession, handleLogout, checkAuth } = useContext(SessionContext);

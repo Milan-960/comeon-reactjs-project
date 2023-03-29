@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Routes, useParams } from "react-router-dom";
 
 import Login from "../Components/Login";
-import GamesList from "../Components/Games-list";
 
 import { SessionProvider } from "../Hooks/SessionProvider";
-import Game from "../Components/Game";
+import Game from "../Pages/Game";
+import GamesList from "../Pages/Games-list";
 
 // setting up the path
 export const routes = {
