@@ -9,6 +9,11 @@ function GameLists() {
 
   const [searchTerm, setSearchTerm] = useState("");
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+  };
+
   useEffect(() => {
     // added this line to check if the user is authenticated
     checkAuth();
@@ -59,7 +64,7 @@ function GameLists() {
                   type="text"
                   placeholder="Search Game"
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={handleSearch}
                 />
                 <i className="search icon"></i>
               </div>
@@ -75,7 +80,7 @@ function GameLists() {
                     game.name.toLowerCase().includes(searchTerm.toLowerCase())
                   )
                   .map((game) => (
-                    <div className="item" key={game.id}>
+                    <div key={game.id} className="game item">
                       <div className="image game-image">
                         <img
                           src={game.icon}
@@ -86,6 +91,11 @@ function GameLists() {
                       <div className="content">
                         <div className="header">{game.name}</div>
                         <div className="description">{game.description}</div>
+                        <button className="ui icon right floated button">
+                          <div className="play-button-container">
+                            Play <i className="right play icon"></i>
+                          </div>
+                        </button>
                       </div>
                     </div>
                   ))}
