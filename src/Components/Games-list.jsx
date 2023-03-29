@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { SessionContext } from "../Hooks/SessionProvider";
 import CategoryFilter from "./CategoryFilter";
@@ -115,11 +116,14 @@ function GameLists() {
                       <div className="content">
                         <div className="header">{game.name}</div>
                         <div className="description">{game.description}</div>
-                        <button className="ui icon right floated button">
+                        <Link
+                          to={`/games-list/game/${game.code}`}
+                          className="ui icon right floated button"
+                        >
                           <div className="play-button-container">
                             Play <i className="right play icon"></i>
                           </div>
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   ))}
