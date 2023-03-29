@@ -73,12 +73,9 @@ function GameLists() {
                   </div>
                 </div>
               </div>
-              <div
-                className="logout ui left floated secondary button inverted"
-                onClick={handleLogout}
-              >
+              <button className="ui secondary button" onClick={handleLogout}>
                 <i className="left chevron icon"></i> Log Out
-              </div>
+              </button>
             </div>
 
             <div className="four wide column">
@@ -116,10 +113,11 @@ function GameLists() {
                         <div className="description">{game.description}</div>
                         <Link
                           to={`/games-list/game/${game.code}`}
-                          className="ui icon right floated button"
+                          className="ui icon right floated secondary button"
                         >
-                          <div className="play-button-container">
-                            Play <i className="right play icon"></i>
+                          <div className="header">
+                            <span>Play</span>
+                            <i className="right play icon"></i>
                           </div>
                         </Link>
                       </div>
