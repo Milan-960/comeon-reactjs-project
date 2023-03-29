@@ -1,29 +1,26 @@
-import logo from "./logo.svg";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import Logo from "./Assets/images/logo.svg";
 
-import "./App.css";
+import BaseRoutes from "./Router/Router";
+
 import "./stylesheets/semantic.css";
 import "./stylesheets/styles.css";
-// import "semantic-ui-css/semantic.min.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div class="ui one column center aligned page grid">
+        <div class="column twelve wide">
+          <img src={Logo} alt="logo" />
+        </div>
+      </div>
+
+      <BrowserRouter>
+        <BaseRoutes />
+      </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;
