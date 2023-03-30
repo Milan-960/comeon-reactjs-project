@@ -22,7 +22,7 @@ const gameURLs = {
   },
 };
 
-function Game({ gameCode }) {
+const Game = ({ gameCode }) => {
   //* Game URL
   const gameURL = gameURLs[gameCode]?.src;
   const navigate = useNavigate();
@@ -57,6 +57,6 @@ function Game({ gameCode }) {
       </div>
     </>
   );
-}
+};
 
 export default Game;

@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Login from "../Components/Login";
 import { SessionProvider } from "../Hooks/SessionProvider";
+import Login from "../Components/Login";
 import GamesList from "../Pages/Games-list";
 import NotFound from "../Pages/404";
 
@@ -15,7 +15,7 @@ export const routes = {
   GAME: "/games-list/game/:gameId",
 };
 
-function BaseRoutes() {
+const BaseRoutes = () => {
   return (
     <>
       <SessionProvider>
@@ -28,6 +28,6 @@ function BaseRoutes() {
       </SessionProvider>
     </>
   );
-}
+};
 
 export default BaseRoutes;
