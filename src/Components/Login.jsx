@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 
 import { SessionContext } from "../Hooks/SessionProvider";
 
-function Login() {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -67,6 +67,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;

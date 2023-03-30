@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { SessionContext } from "../Hooks/SessionProvider";
 import CategoryFilter from "../Components/CategoryFilter";
 
-function GameLists() {
+const GameLists = () => {
   const { userSession, handleLogout, checkAuth } = useContext(SessionContext);
 
   const [games, setGames] = useState([]);
@@ -141,6 +141,6 @@ function GameLists() {
       </div>
     </div>
   );
-}
+};
 
 export default GameLists;
